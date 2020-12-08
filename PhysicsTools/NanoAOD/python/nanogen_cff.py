@@ -110,13 +110,19 @@ def pruneGenParticlesNano(process):
 
 # Prune gen particles with conditions applied in usual MiniAOD
 def pruneGenParticlesMini(process):
-    from PhysicsTools.PatAlgos.slimming.prunedGenParticles_cfi import prunedGenParticles
-    process.prunedGenParticles = prunedGenParticles.clone()
-    if process.nanoAOD_step.contains(process.nanogenMiniSequence):
-        raise ValueError("Applying the MiniAOD genParticle pruner to MiniAOD is redunant. " \
-            "Use a different customization.")
-    process.genParticleTable.src = "prunedGenParticles"
+    #from PhysicsTools.PatAlgos.slimming.prunedGenParticles_cfi import prunedGenParticles
+    process.load("PhysicsTools.PatAlgos.slimming.genParticles_cff")
+    #process.prunedGenParticles = prunedGenParticles.clone()
+    process.finalGenParticles = finalGenParticles.clone()
+    # if process.nanoAOD_step.contains(process.nanogenMiniSequence):
+    #    raise ValueError("Applying the MiniAOD genParticle pruner to MiniAOD is redunant. " \
+    #        "Use a different customization.")
+    # process.genParticleTable.src = "prunedGenParticles"
+    process.genParticleTable.src = "finalGenParticles"
     process.patJetPartons.particles = "prunedGenParticles"
+    #process.patJetPartons.particles = "finalGenParticles"
+    process.nanogenSequence.associate(process.genParticlesTask)
+    process.nanoAOD_step.insert(0, process.finalGenParticles)
     process.nanoAOD_step.insert(0, process.prunedGenParticles)
     return process
 
