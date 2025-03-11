@@ -310,6 +310,17 @@ electronTable = simpleCandidateFlatTableProducer.clone(
         sieie = Var("full5x5_sigmaIetaIeta()",float,doc="sigma_IetaIeta of the supercluster, calculated with full 5x5 region",precision=10),
         eInvMinusPInv = Var("(1-eSuperClusterOverP())/ecalEnergy()",float,doc="1/E_SC - 1/p_trk",precision=10),
         scEtOverPt = Var("(superCluster().energy()/(pt*cosh(superCluster().eta())))-1",float,doc="(supercluster transverse energy)/pt-1",precision=8),
+        # Custom electron variables, Added by Jin
+        # dEtaInSeed = deltaEtaInSeed, dEtaIn = deltaEtaInSC, dPhiIn = deltaPhiInSC,
+        deltaEtaInSC = Var("deltaEtaSuperClusterTrackAtVtx()",float,doc="dEta(Inner track, supercluster)",precision=10),
+        deltaEtaInSeed = Var("deltaEtaSeedClusterTrackAtVtx()",float,doc="dEta(Inner track, seedcluster)",precision=10),
+        deltaPhiInSC = Var("deltaPhiSuperClusterTrackAtVtx()",float,doc="dPhi(Inner track, supercluster)",precision=10),
+        deltaPhiInSeed = Var("deltaPhiSeedClusterTrackAtCalo()", float, doc="dPhi(Inner track, seedcluster)", precision=10),
+        #deltaEtaInSeed = Var("deltaEtaSeedClusterTrackAtCalo",float,doc="dEta(Inner track, seedcluster)",precision=10),
+        #deltaPhiInSC = Var("deltaPhiSuperClusterTrackAtVtx",float,doc="dPhi(Inner track, supercluster)",precision=10),
+        #deltaPhiInSeed = Var("deltaPhiSeedClusterTrackAtCalo",float,doc="dPhi(Inner track, seedcluster)",precision=10),
+        #full5x5HoverE = Var("full5x5_hcalOverEcal",float,doc="full5x5 H/E",precision=10),
+        # End of custom variables
 
         mvaIso = Var("userFloat('mvaIso')",float,doc="MVA Iso ID score, Winter22V1"),
         mvaIso_WP80 = Var("userInt('mvaIso_WP80')",bool,doc="MVA Iso ID WP80, Winter22V1"),
