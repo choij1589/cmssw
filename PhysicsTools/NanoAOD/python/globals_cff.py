@@ -67,4 +67,4 @@ genFilterTable = simpleGenFilterFlatTableProducerLumi.clone(
 )
 
 globalTablesTask = cms.Task(beamSpotTable, rhoTable)
-globalTablesMCTask = cms.Task(puTable,genTable,genFilterTable)
+globalTablesMCTask = cms.Task(rhoTable, puTable,genTable,genFilterTable)
