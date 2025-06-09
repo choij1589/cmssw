@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 #script to run generic lhe generation tarballs
 #kept as simply as possible to minimize need 
