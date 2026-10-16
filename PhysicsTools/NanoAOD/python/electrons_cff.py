@@ -372,6 +372,16 @@ electronTable = simplePATElectronFlatTableProducer.clone(
         seediEtaOriX = Var("superCluster().seedCrysIEtaOrIx","int16",doc="iEta or iX of seed crystal. iEta is barrel-only, iX is endcap-only. iEta runs from -85 to +85, with no crystal at iEta=0. iX runs from 1 to 100."),
         seediPhiOriY = Var("superCluster().seedCrysIPhiOrIy","int16",doc="iPhi or iY of seed crystal. iPhi is barrel-only, iY is endcap-only. iPhi runs from 1 to 360. iY runs from 1 to 100."),
         jetNDauCharged = Var("?userCand('jetForLepJetVar').isNonnull()?userFloat('jetNDauChargedMVASel'):0", "uint8", doc="number of charged daughters of the closest jet"),
+        # Custom electron variables, Added by Jin
+        # names follow the NanoV15 EGM flavour (_eleVarsExtra below)
+        superclusterPhi = Var("superCluster().phi()",float,doc="supercluster phi",precision=10),
+        superclusterEnergy = Var("superCluster().energy()",float,doc="only PF cluster energy is corrected, no object-level regression",precision=10),
+        DeltaEtaInSC = Var("deltaEtaSuperClusterTrackAtVtx",float,doc="dEta(Inner track, supercluster)",precision=10),
+        DeltaPhiInSC = Var("deltaPhiSuperClusterTrackAtVtx",float,doc="dPhi(Inner track, supercluster)",precision=10),
+        DeltaPhiInSeed = Var("deltaPhiSeedClusterTrackAtCalo",float,doc="dPhi(Inner track, seedcluster)",precision=10),
+        ecalPFClusIso = Var("ecalPFClusterIso",float,doc="ECAL PF cluster isolation",precision=10),
+        hcalPFClusIso = Var("hcalPFClusterIso",float,doc="HCAL PF cluster isolation",precision=10),
+        dr03HcalTowerSumEt = Var("dr03HcalTowerSumEt",float,doc="HCal isolation",precision=10),
     ),
     externalVariables = cms.PSet(
         promptMVA = ExtVar(cms.InputTag("electronPROMPTMVA"),float, doc="Prompt MVA lepton ID score. Corresponds to the previous mvaTTH",precision=14),
